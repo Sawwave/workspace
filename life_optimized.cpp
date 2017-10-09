@@ -69,9 +69,7 @@ void runRow(uint64_t *board, uint32_t row){
         next_col_sums = getColSumsForGroup(board, row_start_index+group, next_group_vals);
         uint64_t left = createLeftNeighborsFromColSums(curr_col_sums, prev_col_sum);
         uint64_t right =  createRightNeighborsFromColSums(curr_col_sums, next_col_sums);
-        uint64_t current_neighbors = curr_col_sums +
-                                     createLeftNeighborsFromColSums(curr_col_sums, prev_col_sum) +
-                                     createRightNeighborsFromColSums(curr_col_sums, next_col_sums);
+        uint64_t current_neighbors = curr_col_sums + left + right);
         uint64_t new_state = neighborSumToStateBit(current_neighbors, curr_group_vals);
 
         updateBoardIndex(board, row_start_index + group - 1, new_state, curr_group_vals);
